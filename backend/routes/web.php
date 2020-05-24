@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api', 'middleware' => 'session'], function () use ($router) {
+    $router->POST('/login', 'UserController@login');
+});

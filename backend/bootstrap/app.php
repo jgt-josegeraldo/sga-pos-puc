@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -112,4 +112,19 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
+$app->routeMiddleware([
+     'session' => App\Http\Middleware\Session::class,
+]);
+
+$app->middleware([
+    \Illuminate\Session\Middleware\StartSession::class,
+]);
+
+$app->bind(\Illuminate\Session\SessionManager::class, function () use ($app) {
+    return new \Illuminate\Session\SessionManager($app);
+});
+
+$app->register(\Illuminate\Session\SessionServiceProvider::class);
+
+$app->configure('session');
 return $app;

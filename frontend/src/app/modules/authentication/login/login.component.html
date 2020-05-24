@@ -1,0 +1,40 @@
+<app-loading [loading]="loading" [loadingNavigation]="false"></app-loading>
+<div back style="height: 100%;">
+    <div fxLayout="column" fxLayoutAlign="center center" fxFill>
+        <mat-card class="login-card">
+            <mat-card-content>
+                <div>
+                    <div fxLayoutAlign="center center">
+                        <h4>SGA</h4>
+                    </div>
+                    <div fxLayout="row">
+                        <mat-form-field appearance="fill" fxFlex="100">
+                            <mat-label>E-mail</mat-label>
+                            <input [(ngModel)]="email" type="email" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row">
+                        <mat-form-field appearance="fill" fxFlex="100">
+                            <mat-label>Senha</mat-label>
+                            <input [(ngModel)]="password" type="password" matInput>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayout.xs="column">
+                        <div fxFlex fxLayoutAlign="start center">
+                            <mat-checkbox color="primary">Continuar conectado</mat-checkbox>
+                        </div>
+                        <div fxFlex="10"></div>
+                        <div fxFlex fxLayoutAlign="end center">
+                            <a class="login-forget-pass" >Esqueci minha senha</a>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex fxLayoutAlign="center center" class="login-content-btn">
+                            <button (click)="login()" mat-raised-button color="primary">Acessar</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
