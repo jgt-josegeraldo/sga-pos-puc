@@ -17,4 +17,13 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api', 'middleware' => 'session'], function () use ($router) {
     $router->POST('/login', 'UserController@login');
+    $router->POST('/logout', 'UserController@logout');
+
+    $router->group(['prefix' => 'asset', 'middleware' => 'auth'], function () use ($router) {
+        $router->POST('/save', 'AssetController@save');
+        $router->GET('/{assetId}', 'AssetController@get');
+        $router->GET('/list', 'AssetController@list');
+        $router->GET('/listCategory', 'AssetController@listCategory');
+        $router->GET('/listStatus', 'AssetController@listStatus');
+    });
 });

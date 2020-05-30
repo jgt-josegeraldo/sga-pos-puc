@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Model\User\ModelEloquent;
+namespace App\Model\Asset\ModelEloquent;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class MantenanceStatus extends Model
 {
     use SoftDeletes;
     protected $dates = [
@@ -14,12 +14,8 @@ class User extends Model
     
     protected $fillable = [
         'id',
-        'pass',
-        'login',
-        'name'
+        'description'
     ];
-
-    protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
     
-    protected $table = 'user';
+    protected $table = 'maintenance_status';
 }

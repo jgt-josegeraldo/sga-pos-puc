@@ -31,4 +31,19 @@ export class HttpService {
         catchError(this.handleError)
       );
   }
+
+  get(item) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('tokenPoc'),
+      })
+    };
+    return this.httpClient
+      .get(`${this.urlServer}${this.endpoint}`, options)
+      .pipe(
+        map(data => this.serializer.fromJson(data)),
+        catchError(this.handleError)
+      );
+  }
 }

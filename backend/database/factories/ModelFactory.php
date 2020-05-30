@@ -16,9 +16,13 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\Model\Asset\ModelEloquent\Asset::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'code' => $faker->numberBetween(1000000, 999999999),
+        'name' => $faker->randomElement(['Agitador xxx', 'BALANÇA aaa', 'Filtros Prensa www']),
+        'description' => $faker->text(250),
+        'category_id' => $faker->numberBetween(1, 2),
+        'asset_status_id' => $faker->numberBetween(1, 2),
+        'acquisition_date' => $faker->dateTimeBetween('-3 years'),
     ];
 });

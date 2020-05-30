@@ -116,6 +116,10 @@ $app->routeMiddleware([
      'session' => App\Http\Middleware\Session::class,
 ]);
 
+$app->routeMiddleware([
+     'auth' => App\Http\Middleware\Auth::class,
+]);
+
 $app->middleware([
     \Illuminate\Session\Middleware\StartSession::class,
 ]);
