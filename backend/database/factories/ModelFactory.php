@@ -19,10 +19,19 @@ use Faker\Generator as Faker;
 $factory->define(App\Model\Asset\ModelEloquent\Asset::class, function (Faker $faker) {
     return [
         'code' => $faker->numberBetween(1000000, 999999999),
-        'name' => $faker->randomElement(['Agitador xxx', 'BALANÇA aaa', 'Filtros Prensa www']),
+        'name' => $faker->text(45),
         'description' => $faker->text(250),
         'category_id' => $faker->numberBetween(1, 2),
         'asset_status_id' => $faker->numberBetween(1, 2),
         'acquisition_date' => $faker->dateTimeBetween('-3 years'),
+    ];
+});
+
+$factory->define(App\Model\Asset\ModelEloquent\Mantenance::class, function (Faker $faker) {
+    return [
+        'note' => $faker->text(250),
+        'maintenance_status_id' => $faker->numberBetween(1, 3),
+        'responsible_id' => $faker->numberBetween(1, 2),
+        'asset_id' => $faker->numberBetween(1, 100),
     ];
 });

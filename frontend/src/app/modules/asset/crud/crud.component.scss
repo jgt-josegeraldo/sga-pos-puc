@@ -1,3 +1,26 @@
-table {
+.conteiner-table {
+  overflow: auto;
+  padding: 2px !important;
+}
+
+.conteiner-table table {
   width: 100%;
+  min-width: 600px;
+}
+
+.container-pag div, .container-pag mat-form-field {
+  padding: 8px;
+}
+
+button div {
+  padding: 0px !important;
+}
+
+.align-button{
+  margin-top: 15px;
+}
+
+.align-icon{
+  position: relative;
+  top: 5px;
 }

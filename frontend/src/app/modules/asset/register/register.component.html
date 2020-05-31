@@ -1,23 +1,24 @@
 <app-bar></app-bar>
+<div class="container-pag">
 <mat-card>
     <div fxLayout="row">
-            <mat-form-field>
+            <mat-form-field fxFlex="30">
                 <mat-label>Código Aquisição:</mat-label>
                 <input matInput [(ngModel)]="code">
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field  fxFlex="70">
                 <mat-label>Nome:</mat-label>
                 <input matInput [(ngModel)]="name">
             </mat-form-field>
         </div>
         <div fxLayout="row">
-            <mat-form-field>
+            <mat-form-field fxFlex>
                 <mat-label>Data da aquisição:</mat-label>
                 <input matInput [(ngModel)]="acquisition_date" [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field fxFlex>
                 <mat-label>Categoria:</mat-label>
                 <mat-select [(ngModel)]="category">
                     <mat-option *ngFor="let category of categorys" [value]="category.id">
@@ -25,7 +26,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field fxFlex>
                 <mat-label>Situação ativo:</mat-label>
                 <mat-select [(ngModel)]="status">
                     <mat-option *ngFor="let status of assetsStatus" [value]="status.id">
@@ -35,11 +36,15 @@
             </mat-form-field>
         </div>
         <div fxLayout="row">
-            <mat-form-field>
+            <mat-form-field fxFlex>
                 <mat-label>Descrição:</mat-label>
                 <textarea matInput [(ngModel)]="description" ></textarea>
             </mat-form-field>
-        </div>       
-        <button (click)="save()" mat-raised-button color="primary">Salvar</button>
+        </div>  
+        <div fxLayout="row">
+            <button (click)="save()" mat-raised-button color="primary">Salvar</button>
+            <button (click)="save()" color="primary">Cancelar</button>
+        </div>
 
 </mat-card>
+</div>

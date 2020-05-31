@@ -144,5 +144,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $asset = factory(App\Model\Asset\ModelEloquent\Asset::class, 100)->create();
+
+        $asset = factory(App\Model\Asset\ModelEloquent\Mantenance::class, 200)->create();
     }
 }

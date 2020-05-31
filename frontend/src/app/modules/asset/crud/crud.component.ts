@@ -25,6 +25,7 @@ export class CrudComponent implements OnInit {
   private data: any;
   assetsStatus: any = [];
   categorys: any = [];
+  filterOpen: false;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,5 +44,9 @@ export class CrudComponent implements OnInit {
 
   navRegister(id) {
     this.router.navigate(['/ativos/cadastro/'+id]);
+  }
+
+  nav() {
+    this.router.navigate(['/ativos/cadastro']);
   }
 }

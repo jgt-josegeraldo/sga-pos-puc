@@ -1,7 +1,11 @@
 
-<mat-toolbar color="primary">
-        <h1 class="float-l">
-            SGA
-        </h1>
+<mat-toolbar color="primary">    
+    <div fxFlex>
+        <h1 class="float-l"> SCA </h1>
+    </div>
+    <div class="align-left">
+        <button mat-button (click)="nav()">Usuários</button>
         <button mat-button (click)="nav()">Ativos</button>
+        <button mat-button (click)="logout()">Sair</button>
+    </div>   
 </mat-toolbar>
