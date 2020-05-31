@@ -21,11 +21,12 @@ export interface PeriodicElement {
 })
 export class CrudComponent implements OnInit {
   displayedColumns: string[] = ['code', 'name', 'date_of_last_maintenance', 'categoryDescription', 'id'];
+  searchText: any;
   dataSource: any;
   private data: any;
   assetsStatus: any = [];
   categorys: any = [];
-  filterOpen: false;
+  filterOpen = false;
 
   constructor(
     private route: ActivatedRoute,
