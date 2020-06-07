@@ -146,5 +146,27 @@ class DatabaseSeeder extends Seeder
         $asset = factory(App\Model\Asset\ModelEloquent\Asset::class, 100)->create();
 
         $asset = factory(App\Model\Asset\ModelEloquent\Mantenance::class, 200)->create();
+
+        DB::table('trigger')->insert([
+            'id' => 1,
+            'description' => 'Inclusão de novo ativo',
+            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        DB::table('trigger')->insert([
+            'id' => 2,
+            'description' => 'Exclusão de ativo',
+            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        DB::table('webhook')->insert([
+            'id' => 1,
+            'link' => 'https://webhook.site/b5f1744d-79ec-49c3-a807-744544d994c5',
+            'trigger_id' => 1,
+            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
     }
 }

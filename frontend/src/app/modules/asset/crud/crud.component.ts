@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MaintenanceRecordComponent } from '../maintenance-record/maintenance-record.component';
 
 export interface PeriodicElement {
   id: number,
@@ -31,6 +33,7 @@ export class CrudComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    public dialog: MatDialog
   ) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -49,5 +52,16 @@ export class CrudComponent implements OnInit {
 
   nav() {
     this.router.navigate(['/ativos/cadastro']);
+  }
+
+  openDialog(id): void {
+    const dialogRef = this.dialog.open(MaintenanceRecordComponent, {
+      width: '600px',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

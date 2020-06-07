@@ -33,14 +33,14 @@ class UserController extends Controller
         $userLogged = $this->userAggregation->login($request->get('login'), $request->get('password'));
         if ($userLogged) {
             App('session')->put('userId', $userLogged->id);
-            App('session')->put('permission', $userLogged->permission);
             App('session')->save();
             return response()->json([
                 'success' => true,
                 'user' => [
                     'name' => $userLogged->name
                 ],
-                'token' => App('session')->getId()
+                'token' => App('session')->getId(),
+                'permissionUser' => App('session')->get('userId') == 1 ? 1 : 0
             ]);
         }
         return response()->json([

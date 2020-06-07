@@ -25,5 +25,7 @@ $router->group(['prefix' => 'api', 'middleware' => 'session'], function () use (
         $router->GET('/list', 'AssetController@list');
         $router->GET('/listCategory', 'AssetController@listCategory');
         $router->GET('/listStatus', 'AssetController@listStatus');
+        $router->GET('/listWebhooks', 'AssetController@listWebhooks');
+        $router->GET('/listTriggers', 'AssetController@listTriggers');
     });
 });

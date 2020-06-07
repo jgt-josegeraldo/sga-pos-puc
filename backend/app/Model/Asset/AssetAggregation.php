@@ -4,6 +4,8 @@ namespace App\Model\Asset;
 
 use App\Model\Asset\ModelEloquent\Asset;
 use App\Model\Asset\ModelEloquent\Category;
+use App\Model\Asset\ModelEloquent\Trigger;
+use App\Model\Asset\ModelEloquent\Webhook;
 use App\Model\Asset\ModelEloquent\AssetStatus;
 use \DB;
 
@@ -51,5 +53,23 @@ class AssetAggregation
     public function listStatus()
     {
         return AssetStatus::all();
+    }
+
+    public function listTriggers()
+    {
+        return Trigger::all();
+    }
+
+    public function listWebhooks()
+    {
+        return  DB::table('webhook')
+            ->select(
+                'webhook.id',
+                'webhook.link',
+                'trigger.description as trigger'
+            )
+            ->join('trigger', 'webhook.trigger_id', '=', 'trigger.id')
+            ->whereNull('webhook.deleted_at')
+            ->get()->toArray();
     }
 }

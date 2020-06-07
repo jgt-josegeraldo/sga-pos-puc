@@ -32,10 +32,11 @@ class AssetController extends Controller
                 'name.required' => 'Informe nome do ativo.'
             ]
         );
-        if ($this->assetAggregation->save($request->all())) {
+        $asset = $this->assetAggregation->save($request->all());
+        if ($asset) {
             return response()->json([
                 'success' => true,
-                'token' => App('session')->getId()
+                'id' => $asset->id
             ]);
         }
         return response()->json([
@@ -62,27 +63,53 @@ class AssetController extends Controller
 
     public function list(Request $request)
     {
-        \DB::connection()->enableQueryLog();
         $data = $this->assetAggregation->list();
         if ($data) {
             return response()->json([
                 'success' => true,
-                'data' => $data,
-                'query' => \DB::getQueryLog(),
-                'token' => App('session')->getId()
+                'data' => $data
             ]);
         }
         return response()->json([
             'success' => false,
-                'query' => \DB::getQueryLog(),
             'error' => 'Ocorreu um erro inesperado no sistema.'
         ]);
     }
 
     public function listCategory(Request $request)
     {
-        \DB::connection()->enableQueryLog();
         $data = $this->assetAggregation->listCategory();
+        if ($data) {
+            return response()->json([
+                'success' => true,
+                'data' => $data
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'error' => 'Ocorreu um erro inesperado no sistema.'
+        ]);
+    }
+
+    public function listStatus(Request $request)
+    {
+        $data = $this->assetAggregation->listStatus();
+        if ($data) {
+            return response()->json([
+                'success' => true,
+                'data' => $data
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'error' => 'Ocorreu um erro inesperado no sistema.'
+        ]);
+    }
+
+    public function listTriggers(Request $request)
+    {
+        \DB::connection()->enableQueryLog();
+        $data = $this->assetAggregation->listTriggers();
         if ($data) {
             return response()->json([
                 'success' => true,
@@ -98,10 +125,10 @@ class AssetController extends Controller
         ]);
     }
 
-    public function listStatus(Request $request)
+    public function listWebhooks(Request $request)
     {
         \DB::connection()->enableQueryLog();
-        $data = $this->assetAggregation->listStatus();
+        $data = $this->assetAggregation->listWebhooks();
         if ($data) {
             return response()->json([
                 'success' => true,

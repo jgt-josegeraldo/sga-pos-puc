@@ -5,6 +5,9 @@ import { CrudComponent } from './crud/crud.component';
 import { ListAssetsService } from './service/list-assets.service';
 import { ListCategoryService } from './service/list-category.service';
 import { ListStatusService } from './service/list-status.service';
+import { ListTriggerService } from './service/list-trigger.service';
+import { ListWebhooksService } from './service/list-webhooks.service';
+import { IntegrationComponent } from './integration/integration.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +17,14 @@ export const routes: Routes = [
       assets: ListAssetsService,
       categorys: ListCategoryService,
       status: ListStatusService
+    }
+  },
+  {
+    path: 'integracao',
+    component: IntegrationComponent,
+    resolve: {
+      triggers: ListTriggerService,
+      webhooks: ListWebhooksService
     }
   },
   {

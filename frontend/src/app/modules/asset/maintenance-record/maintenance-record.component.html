@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Registrar manutenção</h1>
+<div mat-dialog-content class="container-pag">
+    <div fxLayout="row">
+        <mat-label>Manutenção préviamente agenda pelo sistema?</mat-label>
+        <mat-radio-group  color="primary" aria-label="Manutenção préviamente agenda pelo sistema?">
+            <mat-radio-button value="1">Sim</mat-radio-button>
+            <mat-radio-button value="2">Não</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div fxLayout="row">
+        <mat-form-field fxFlex>
+            <mat-label>Resposável pela manutenção</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let user of users" [value]="user.id">
+                    {{user.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+            <mat-label>Data da realização da manutenção:</mat-label>
+            <input matInput [(ngModel)]="maintenance_date" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    
+    <div fxLayout="row">
+        <mat-form-field fxFlex>
+            <mat-label>Descrição:</mat-label>
+            <textarea matInput [(ngModel)]="description"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions >
+    <button mat-button class="align-button" (click)="onNoClick()">Cancelar</button>
+    <button mat-button disabled mat-raised-button color="primary">Registrar</button>
+</div>

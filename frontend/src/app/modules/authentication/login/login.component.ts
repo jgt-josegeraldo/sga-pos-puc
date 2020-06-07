@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     ).subscribe(
       success =>  {
         localStorage.setItem('tokenPoc', success.token);
+        localStorage.setItem('showUser', success.permissionUser);
         this.route.navigate(['/ativos/']);
         this.loading = false;
       },

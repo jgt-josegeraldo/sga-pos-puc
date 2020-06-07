@@ -28,6 +28,16 @@ export class AssetService extends HttpService {
     return super.get(item);
   }
 
+  listWebhooks(item) {
+    this.endpoint = 'asset/listWebhooks';
+    return super.get(item);
+  }
+
+  listTriggers(item) {
+    this.endpoint = 'asset/listTriggers';
+    return super.get(item);
+  }
+
   list(item) {
     this.endpoint = 'asset/list';
     return super.get(item);

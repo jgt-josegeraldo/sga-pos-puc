@@ -12,13 +12,21 @@ export class BarComponent implements OnInit {
   constructor(private route: Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('showUser') === '1') {
+      this.showUser = true;
+    }
+  }
+
+  navUser() {
+    this.route.navigate(['/usuarios']);
   }
 
   nav() {
     this.route.navigate(['/ativos']);
-    if (localStorage.getItem('showUser') === '1') {
-      this.showUser = true;
-    }
+  }
+
+  navIntegration() {
+    this.route.navigate(['/ativos/integracao']);
   }
 
   logout() {

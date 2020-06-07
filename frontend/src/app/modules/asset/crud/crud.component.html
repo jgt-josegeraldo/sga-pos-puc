@@ -3,7 +3,7 @@
     <div fxLayout="row">
         <button (click)="nav()" mat-raised-button color="primary">Adicionar</button>
         <span fxFlex></span>
-        <div (click)="filterOpen = !filterOpen">filtro<mat-icon class="align-icon" *ngIf="!filterOpen">expand_more</mat-icon><mat-icon class="align-icon" *ngIf="filterOpen">expand_less</mat-icon></div>
+        <div (click)="filterOpen = !filterOpen" class="div-filter">filtro<mat-icon class="align-icon" *ngIf="!filterOpen">expand_more</mat-icon><mat-icon class="align-icon" *ngIf="filterOpen">expand_less</mat-icon></div>
     </div>
 
 <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxFlexAlign="center center" *ngIf="filterOpen">
@@ -73,6 +73,9 @@
                         <mat-icon>settings</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
+                        <button (click)="openDialog(element.id)" mat-menu-item>
+                            <span>Registrar Manutenção</span>
+                        </button>
                         <button (click)="navRegister(element.id)" mat-menu-item>
                             <span>Editar</span>
                         </button>
