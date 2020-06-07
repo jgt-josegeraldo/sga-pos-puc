@@ -16,7 +16,6 @@ class Session
      */
     public function handle($request, Closure $next)
     {
-        sleep(1);
         if ($request->bearerToken()) {
             App('session')->setId($request->bearerToken());
         }
