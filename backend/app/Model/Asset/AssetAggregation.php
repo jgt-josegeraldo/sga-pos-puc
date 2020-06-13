@@ -49,14 +49,16 @@ class AssetAggregation
             ->where('webhook.trigger_id', '=', '1')
             ->whereNull('webhook.deleted_at')
             ->get()->toArray();
-        $client = new Client();
-        $response = $client->request(
-            'POST',
-            $webhook[0]->link,
-            [
-                'json' => $asset,
-            ]
-        );
+        if ($webhook && is_array($webhook)) {
+            $client = new Client();
+            $response = $client->request(
+                'POST',
+                $webhook[0]->link,
+                [
+                    'json' => $asset,
+                ]
+            );
+        }
     }
 
     public function get($assetId)
