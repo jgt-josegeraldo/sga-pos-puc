@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
         DB::table('webhook')->insert([
             'id' => 1,
             'link' => 'https://webhook.site/b5f1744d-79ec-49c3-a807-744544d994c5',
-            'trigger_id' => 1,
+            'trigger_id' => 2,
             'updated_at' => date('Y-m-d H:i:s'),
             'created_at' => date('Y-m-d H:i:s')
         ]);
