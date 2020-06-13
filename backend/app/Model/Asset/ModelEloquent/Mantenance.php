@@ -17,6 +17,7 @@ class Mantenance extends Model
         'note',
         'maintenance_status_id',
         'responsible_id',
+        'maintenance_date',
         'asset_id'
     ];
     

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetService } from '../../../core/model/asset/asset.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
   assetsStatus: any = [];
 
   constructor(
+    private toastr: ToastrService,
     private assetService: AssetService,
     private router: Router,
     private route: ActivatedRoute,
@@ -45,6 +47,7 @@ export class RegisterComponent implements OnInit {
       }
     ).subscribe(
       success => {
+        this.toastr.success("Ativo cadastrado com sucesso.");
         this.router.navigate(['/ativos']);
         this.loading = false;
       },
@@ -52,5 +55,10 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+
+  noSave() {
+    this.router.navigate(['/ativos']);
+    this.loading = false;
   }
 }

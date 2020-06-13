@@ -7,12 +7,12 @@
         <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxFlexAlign="center center">
             <mat-form-field fxFlex="40">
                 <mat-label>Link:</mat-label>
-                <input matInput [(ngModel)]="searchText" />
+                <input matInput [(ngModel)]="link" />
             </mat-form-field>
         
             <mat-form-field fxFlex="30">
                 <mat-label>Gatilho</mat-label>
-                <mat-select>
+                <mat-select  [(ngModel)]="trigger" >
                     <mat-option *ngFor="let trigger of triggers" [value]="trigger.id">
                         {{trigger.description}}
                     </mat-option>
@@ -21,7 +21,7 @@
 
             <span fxFlex></span>
             <div class="align-button">
-                <button mat-raised-button color="primary">Adicionar</button>
+                <button mat-raised-button (click)="save()" color="primary">Adicionar</button>
             </div>
         </div>
 

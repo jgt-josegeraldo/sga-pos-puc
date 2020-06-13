@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AssetService } from '../../../core/model/asset/asset.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface PeriodicElement {
   id: number,
@@ -22,14 +24,18 @@ export interface PeriodicElement {
 export class IntegrationComponent implements OnInit {
   displayedColumns: string[] = ['trigger', 'link', 'id'];
   triggers: any = [];
-  searchText: any;
+  link: string;
+  trigger: number;
   dataSource: any;
   private data: any;
   assetsStatus: any = [];
   categorys: any = [];
   filterOpen = false;
+  loading: boolean = false;
 
   constructor(
+    private toastr: ToastrService,
+    private assetService: AssetService,
     private route: ActivatedRoute,
     private router: Router,
   ) { }
@@ -43,6 +49,34 @@ export class IntegrationComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.triggers = this.data.triggers.data;
     }
+  }
+
+  save() {
+    this.loading = true;
+    this.assetService.saveWebhook(
+      {
+        link: this.link,
+        trigger_id: this.trigger
+      }
+    ).subscribe(
+      success => {
+        this.toastr.success("Webhook adicionado com sucesso.");
+        this.assetService.listWebhooks({}).subscribe(
+          success => {
+            this.dataSource = new MatTableDataSource<PeriodicElement>(success.data);
+            this.loading = false;
+            this.link = null;
+            this.trigger = null;
+          },
+          error => {
+            this.loading = false;
+          }
+        );
+      },
+      error => {
+        this.loading = false;
+      }
+    );
   }
 
 }

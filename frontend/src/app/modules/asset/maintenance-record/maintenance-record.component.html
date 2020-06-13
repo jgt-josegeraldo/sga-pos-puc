@@ -11,7 +11,7 @@
     <div fxLayout="row">
         <mat-form-field fxFlex>
             <mat-label>Resposável pela manutenção</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="responsible" >
                 <mat-option *ngFor="let user of users" [value]="user.id">
                     {{user.name}}
                 </mat-option>
@@ -24,15 +24,26 @@
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
+
+    <div fxLayout="row">
+        <mat-form-field fxFlex>
+            <mat-label>Situação da manutenção:</mat-label>
+            <mat-select [(ngModel)]="maintenance_status" >
+                <mat-option *ngFor="let maintenance_status of maintenance_status_option" [value]="maintenance_status.id">
+                    {{maintenance_status.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
     
     <div fxLayout="row">
         <mat-form-field fxFlex>
-            <mat-label>Descrição:</mat-label>
+            <mat-label>Observações:</mat-label>
             <textarea matInput [(ngModel)]="description"></textarea>
         </mat-form-field>
     </div>
 </div>
 <div mat-dialog-actions >
     <button mat-button class="align-button" (click)="onNoClick()">Cancelar</button>
-    <button mat-button disabled mat-raised-button color="primary">Registrar</button>
+    <button mat-button [disabled]="!description" mat-raised-button color="primary"  (click)="registrar()">Registrar</button>
 </div>

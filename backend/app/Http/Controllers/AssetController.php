@@ -45,6 +45,64 @@ class AssetController extends Controller
         ]);
     }
 
+    public function saveWebhook(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'link' => 'required',
+                'trigger_id' => 'required'
+            ],
+            [
+                'code.required' => 'Informe o link.',
+                'category.required' => 'Informe gatilho.'
+            ]
+        );
+        $asset = $this->assetAggregation->saveWebhook($request->all());
+        if ($asset) {
+            return response()->json([
+                'success' => true,
+                'id' => $asset->id
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'error' => 'Ocorreu um erro inesperado no sistema.'
+        ]);
+    }
+
+    public function saveMaintenance(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'note' => 'required',
+                'maintenance_date' => 'required',
+                'responsible_id' => 'required',
+                'asset_id' => 'required',
+                'maintenance_status_id' => 'required'
+            ],
+            [
+                'maintenance_date.required' => 'Informe uma observação.',
+                'note.required' => 'Informe uma observação.',
+                'responsible_id.required' => 'Informe um responsável.',
+                'asset_id.required' => 'Informe uma ativo.',
+                'maintenance_status_id.required' => 'Informe status da manutenção.'
+            ]
+        );
+        $asset = $this->assetAggregation->saveMaintenance($request->all());
+        if ($asset) {
+            return response()->json([
+                'success' => true,
+                'id' => $asset->id
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'error' => 'Ocorreu um erro inesperado no sistema.'
+        ]);
+    }
+
     public function get(Request $request)
     {
         $data = $this->assetAggregation->save($request->assetId);

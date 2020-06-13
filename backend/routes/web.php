@@ -28,4 +28,12 @@ $router->group(['prefix' => 'api', 'middleware' => 'session'], function () use (
         $router->GET('/listWebhooks', 'AssetController@listWebhooks');
         $router->GET('/listTriggers', 'AssetController@listTriggers');
     });
+
+    $router->group(['prefix' => 'webhook', 'middleware' => 'auth'], function () use ($router) {
+        $router->POST('/save', 'AssetController@saveWebhook');
+    });
+
+    $router->group(['prefix' => 'maintenance', 'middleware' => 'auth'], function () use ($router) {
+        $router->POST('/save', 'AssetController@saveMaintenance');
+    });
 });

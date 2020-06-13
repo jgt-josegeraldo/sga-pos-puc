@@ -53,4 +53,14 @@ export class AssetService extends HttpService {
     return super.post(item);
   }
 
+  saveWebhook(item) {
+    this.endpoint = 'webhook/save';
+    return super.post(item);
+  }
+
+  saveMaintenance(item) {
+    this.endpoint = 'maintenance/save';
+    return super.post(item);
+  }
+
 }

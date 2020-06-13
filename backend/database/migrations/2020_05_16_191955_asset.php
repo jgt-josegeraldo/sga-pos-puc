@@ -66,6 +66,7 @@ class Asset extends Migration
                 $table->unsignedInteger('asset_id');
                 $table->foreign('asset_id')->references('id')->on('asset');
                 $table->string('note', 255)->nullable();
+                $table->timestamp('maintenance_date')->nullable();
                 $table->timestamp('deleted_at')->nullable();
                 $table->timestamps();
             });
