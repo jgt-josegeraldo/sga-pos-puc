@@ -4,7 +4,7 @@
         <h1 class="float-l"> SCA </h1>
     </div>
     <div class="align-left">
-        <button mat-button (click)="navUser()">Usuários</button>
+        <button mat-button *ngIf="showUser" (click)="navUser()">Usuários</button>
         <button mat-button (click)="nav()">Ativos</button>
         <button mat-button (click)="navIntegration()">Integração</button>
         <button mat-button (click)="logout()">Sair</button>
